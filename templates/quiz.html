@@ -1,0 +1,43 @@
+<!-- Margaret Flemings and Maggie Jennings -->
+<!-- Template for the quiz page, currently loads all questions from a deck on the same page-->
+<!-- Counting idea from: https://stackoverflow.com/questions/7537439/how-to-increment-a-variable-on-a-for-loop-in-jinja-template -->
+{% extends 'codemode.html' %}
+  {% block content %}
+  <form id="test-form" method='post' style="padding-left:10%; padding-right:10%;">
+    <!-- count number of questions so we can loop through them later -->
+    {% set count = [0] %}
+    {% for question in questions %}
+  <div class="question{{ count }}" style="border-top:1px solid lightgray;">
+	 <p data-answer="{{question['answer']}}" data-question="q{{ count }}">{{count[0] + 1}}. {{question['questionText']}}</p>
+	    {% if question['qtype'] == 'multi' %}
+      <!-- for each multiple choice question show options -->
+<!--       <p id="arrayorder"> -->
+         <input type="radio" name="q{{ count }}" value="{{question['answer']}}" required>{{question['answer']}}<br>
+	       <input type="radio" name="q{{ count }}" value="{{question['wrong1']}}" required>{{question['wrong1']}}<br>
+ 	       <input type="radio" name="q{{ count }}" value="{{question['wrong2']}}" required>{{question['wrong2']}}<br>
+ 	       <input type="radio" name="q{{ count }}" value="{{question['wrong3']}}" required>{{question['wrong3']}}<br>
+	    {% else %}
+		    {% if question['qtype'] == 'truefalse' %}
+        <!-- true or false questions -->
+				 <input type="radio" name="q{{ count }}" value="true" required>True<br>
+ 	       <input type="radio" name="q{{ count }}" value="False" required>False<br>
+        {% else %}
+            <!-- question is fill in blank -->
+            <input type="text" name="q{{ count }}" required>
+        {% endif%}
+      {% endif %}
+      <br>
+      <div id="questionResult"></div>
+      <div id="explanation"></div>
+    </div>
+      <!-- increment counter -->
+      {% if count.append(count.pop() + 1) %}
+      {% endif %}
+      {% endfor %}
+      <input type="submit" name="submit"></input>
+      <div id="totalResult"></div>
+      </form>
+	<script></script>
+
+
+ {% endblock %}

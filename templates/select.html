@@ -1,0 +1,47 @@
+<!-- Maggie Jennings and Margaret Flemings
+CodeMode
+Lists all current, unique deck options -->
+{% extends 'codemode.html' %}
+  {% block content %}
+    <h2>Choose a deck to study:</h2>
+
+<!-- Carousel Code adapted from W3Schools -->
+<div class="container">
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+
+      {% for deck in decks %}
+          <div class="item">
+            <a href="/quiz/{{deck['deckid']}}">
+              <img style="height:500px; margin: 0 auto;" src="{{deck['image_path']}}" alt="{{deck['deck_name']}} image" style="width:100%;" name="selectDeck" value="{{deck['deck_name']}}">
+            </a>
+            <div class="carousel-caption">
+              <h3>{{deck['deck_name']}}</h3>
+              <p>Click on the image to take the {{deck['deck_name']}} quiz!</p>
+            </div>
+          </div>
+      {% endfor %}
+
+    </div> <!-- end of carousel-inner -->
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
+
+  {% endblock %}

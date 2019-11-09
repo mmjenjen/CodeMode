@@ -1,0 +1,43 @@
+<!-- Margaret Flemings and Maggie Jennings -->
+<!doctype html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8'>
+    <meta name=author content="Scott D. Anderson"> <!-- Adapted by Margaret Flemings -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>{{ page_title }}</title>
+    <!-- <link rel='stylesheet' href="{{url_for('static', filename = 'style.css')}}"> -->
+    
+    {% block head_stuff %} {% endblock %}
+</head>
+<body>
+
+    
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div id="messages">
+        {% for msg in messages %}
+            <p>{{msg}}</p>
+        {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+            
+{% block main_content %}
+<h1>Welcome!</h1>
+{% endblock %}
+
+
+<script src="https://code.jquery.com/jquery.js"></script>
+{% block jquery_scripts %}
+<script>
+console.log('jQuery loaded');
+</script>
+{% endblock %}
+
+</body>
+</html>

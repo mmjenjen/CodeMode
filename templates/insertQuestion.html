@@ -1,0 +1,82 @@
+<!-- Maggie Jennings and Margaret Flemings
+CodeMode
+Form for inserting a question into the database AND doubles as update form
+when given a question-->
+
+{% extends 'codemode.html' %}
+  {% block content %}
+      <form enctype="multipart/form-data" method= "POST" action="{{script}}" style="padding-left:10%; padding-right:10%;">
+        <table class="table">
+        <tbody>
+          <tr>
+            <th scope="row"><label for="questionText">Question Text:</label></th>
+            <td><textarea type=text name='questionText' value="{{questionText}}" required></textarea></td>
+          </tr>
+          <tr>
+            <th scope="row"><label for="answer">Answer:</label></th>
+            <td><input type=text name='answer' value="{{answer}}" required></input></td>
+          </tr>
+          <tr>
+            <th scope="row"><label for="qtype" required>Answer Type:</label></th>
+            <td>
+              <select id='qtype' name='qtype'>
+                <option value="multi">Multiple Choice</option>
+                <option value="fillblank">Fill in the Blank</option>
+              </select>
+            </td>
+          </tr>
+          <tr class="wrong">
+            <th scope="row"><label for="wrong1">Wrong Option 1:</label></th>
+            <td><input type=text name='wrong1' value="{{wrong1}}"></input></td>
+          </tr>
+          <tr class="wrong">
+            <th scope="row"><label for="wrong2">Wrong Option 2:</label></th>
+            <td><input type=text name='wrong2' value="{{wrong2}}"></input></td>
+          </tr>
+          <tr class="wrong">
+            <th scope="row"><label for="wrong3">Wrong Option 3:</label></th>
+            <td><input type=text name='wrong3' value="{{wrong3}}"></input></td>
+          </tr>
+          <tr>
+            <th scope="row"><label for="explanation">Explanation:</label></th>
+            <td><textarea type=text name='explanation' value="{{explanation}}"></textarea></td>
+          </tr>
+          <tr>
+            <th scope="row"><label for="pointVal">Point value:</label></th>
+            <td> <input type=number name='pointVal' value="{{pointVal}}" required></input></td>
+          </tr>
+          <tr id="addExisting">
+            <th scope="row"><label for="deckName">Add to deck:</label></th>
+            <td><select name='deckName' required>
+                {% if selectedDeck %}
+                  <option name="deckName" value="{{selectedDeck}}">{{selectedDeck}}</option>
+                  {% else %}
+                  <option name="deckName" value="None">Select a deck</option>
+                  {% endif %}
+                {% for deck in decks %}
+                  <option name="deckName" value="{{deck}}">{{deck}}</option>
+                {% endfor %}
+            </select></td>
+          </tr>
+        </tbody>
+        </table>
+      <input type="submit" value='submit' name='submit'></input>
+  </form>
+
+
+  {% endblock %}
+{% block jquery_scripts %}
+<script>
+	console.log("hidden");
+	$('#qtype').change(function() {
+		if ($('#qtype').val() == 'multi') {
+			console.log("is multi");
+			$(".wrong").show(1000);
+		} else {
+			console.log("is not multi");
+			$(".wrong").hide(1000);
+			console.log("made it");
+	}
+	});
+</script>
+{% endblock %}

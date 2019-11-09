@@ -1,0 +1,67 @@
+<!-- Maggie Jennings and Margaret Flemings
+CodeMode
+Code for page that updates questions
+-->
+
+{% extends 'codemode.html' %}
+  {% block content %}
+      <form enctype="multipart/form-data" method= "POST" action="{{script}}" style="padding-left:10%; padding-right:10%;">
+        <table class="table">
+        <tbody>
+          <tr>
+            <th scope="row"><label for="questionText">Question Text</label></th>
+            <td><input type=text name='questionText' value="{{questionText}}" required></input></td>
+          </tr>
+          <tr>
+            <th scope="row"><label for="answer">Answer</label></th>
+            <td><input type=text name='answer' value="{{answer}}" required></input></td>
+          </tr>
+          <tr>
+            <th scope="row"><label for="qtype" required>Answer Type</label></th>
+            <td>
+              <select name='qtype'>
+                <option value="multi">Multiple Choice</option>
+                <option value="fillblank">Fill in the Blank</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row"><label for="wrong1">Wrong Option 1:</label></th>
+            <td><input type=text name='wrong1' value="{{wrong1}}"></input></td>
+          </tr>
+          <tr>
+            <th scope="row"><label for="wrong2">Wrong Option 2:</label></th>
+            <td><input type=text name='wrong2' value="{{wrong2}}"></input></td>
+          </tr>
+          <tr>
+            <th scope="row"><label for="wrong3">Wrong Option 3:</label></th>
+            <td><input type=text name='wrong3' value="{{wrong3}}"></input></td>
+          </tr>
+          <tr>
+            <th scope="row"><label for="explanation">Explanation</label></th>
+            <td><input type=text name='explanation' value="{{explanation}}"></input></td>
+          </tr>
+          <tr>
+            <th scope="row"><label for="pointVal">Point value</label></th>
+            <td> <input type=number name='pointVal' value="{{pointVal}}" required></input></td>
+          </tr>
+          <tr id="addExisting">
+            <th scope="row"><label for="deckName">Add to deck:</label></th>
+            <td><select name='deckName' required>
+                <option name="deckName" value="None">Select a deck</option>
+              {% for deck in decks %}
+                {% if deck == selectedDeck %}
+                <option name="deckName" value="{{deck}}" selected>{{deck}}</option>
+                {% endif %}
+                <option name="deckName" value="{{deck}}">{{deck}}</option>
+              {% endfor %}
+            </select></td>
+          </tr>
+        </tbody>
+        </table>
+      <input style="margin-right:100px;" class="btn btn-success" type="submit" name="action" value="update"></input>
+      <input class="btn btn-danger" type="submit" name="action" value="delete"></input>
+  </form>
+
+
+  {% endblock %}
