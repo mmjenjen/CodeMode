@@ -1,5 +1,5 @@
 # CodeMode
-A fun code review game by Maargaret Jennings and Margaret Flemmings for Wellesley's CS304 Databases with Web Interfaces class. 
+A fun code review game by Maargaret Jennings and Margaret Flemings for Wellesley's CS304 Databases with Web Interfaces class. 
 
 ## More details
 Home page: http://cs.wellesley.edu:7535/ (or substitute your localhost)
